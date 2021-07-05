@@ -1559,7 +1559,7 @@ FROM "public"."Factura"
     <append>N</append>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Transformation.Filename.Directory}\Corporative Memory Reports\Time Corporative Memory.xls</name>
+      <name>${Internal.Transformation.Filename.Directory}\Corporative Memory Reports\Sales Time Corporative Memory.xls</name>
       <extention>xls</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <create_parent_folder>N</create_parent_folder>
