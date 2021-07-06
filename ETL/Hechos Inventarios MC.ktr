@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Tabla Hechos Ventas</name>
+    <name>Hechos Inventarios MC</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -427,9 +428,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/04 11:53:06.898</created_date>
+    <created_date>2021/07/04 23:29:59.015</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/07/04 11:53:06.898</modified_date>
+    <modified_date>2021/07/04 23:29:59.015</modified_date>
     <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
@@ -444,6 +445,57 @@
     <port>5432</port>
     <username>kzvwgmey</username>
     <password>Encrypted 46636838776c5f54555641756c36705493a9d5fc308a94bcb232b955fca29dc9</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Too Many Connections</name>
+    <server>batyr.db.elephantsql.com</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>vxtbxatk</database>
+    <port>5432</port>
+    <username>vxtbxatk</username>
+    <password>Encrypted 6a6248515672525967683472495f6e6ccaaeedaf00e4aaaeb335b856eb94e2c0</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -539,13 +591,13 @@
   </connection>
   <order>
     <hop>
-      <from>Producto</from>
-      <to>Sort rows 2</to>
+      <from>Dimension Producto</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension Producto</from>
-      <to>Sort rows</to>
+      <from>Producto</from>
+      <to>Sort rows 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -559,13 +611,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension Marca</from>
+      <from>Merge join</from>
       <to>Sort rows 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Marca</from>
-      <to>Sort rows 4</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -579,18 +626,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join</from>
-      <to>Sort rows 5</to>
+      <from>Dimension Marca</from>
+      <to>Sort rows 4</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 2</from>
+      <from>Rotacion</from>
       <to>Sort rows 6</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 5</from>
-      <to>Merge join 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -599,33 +641,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 3</from>
+      <from>Merge join 2</from>
+      <to>Sort rows 5</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 5</from>
+      <to>Merge join 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dimension Almacen</from>
       <to>Sort rows 7</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Carrito Estanteria</from>
+      <from>Merge join 3</from>
       <to>Sort rows 8</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows 7</from>
-      <to>Merge join 4</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 8</from>
-      <to>Merge join 4</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join 4</from>
-      <to>Sort rows 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Carrito</from>
+      <from>Almacen</from>
       <to>Sort rows 10</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dimension Tienda</from>
+      <to>Sort rows 9</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -639,13 +681,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Factura</from>
-      <to>Sort rows 11</to>
+      <from>Merge join 5</from>
+      <to>Sort rows 12</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension Tienda</from>
-      <to>Sort rows 12</to>
+      <from>Sort rows 8</from>
+      <to>Merge join 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 7</from>
+      <to>Merge join 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join 4</from>
+      <to>Sort rows 11</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -659,13 +711,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 6</from>
-      <to>Sort rows 14</to>
+      <from>Calculator</from>
+      <to>Sort rows 13</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 5</from>
-      <to>Sort rows 13</to>
+      <from>Dimension Tiempo</from>
+      <to>Sort rows 14</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -679,23 +731,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 7</from>
+      <from>Merge join 6</from>
       <to>Calculator</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator</from>
+      <from>Merge join 7</from>
+      <to>Group by</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join 7</from>
       <to>Sort rows 15</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension Tiempo</from>
+      <from>Group by</from>
       <to>Sort rows 16</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 15</from>
-      <to>Merge join 8</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -704,43 +756,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 8</from>
-      <to>Group by</to>
+      <from>Sort rows 15</from>
+      <to>Merge join 8</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Merge join 8</from>
-      <to>Sort rows 17</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by</from>
-      <to>Merge join 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 17</from>
-      <to>Merge join 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join 9</from>
-      <to>Microsoft Excel output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join 9</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Add sequence</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Add sequence</from>
-      <to>Insert / update</to>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -868,7 +890,7 @@ FROM "public"."Dimension_Producto"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
+      <xloc>64</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -894,7 +916,123 @@ FROM "public"."Producto"
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>id_producto</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input 2</origin>
+        <comments>id_producto</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>id_marca</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input 2</origin>
+        <comments>id_marca</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nombre</name>
+        <length>2147483647</length>
+        <precision>-1</precision>
+        <origin>Table input 2</origin>
+        <comments>nombre</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>precio</name>
+        <length>5</length>
+        <precision>2</precision>
+        <origin>Table input 2</origin>
+        <comments>precio</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Boolean</type>
+        <storagetype>normal</storagetype>
+        <name>active</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>Table input 2</origin>
+        <comments>active</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -904,42 +1042,8 @@ FROM "public"."Producto"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
+      <xloc>64</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows</step1>
-    <step2>Sort rows 2</step2>
-    <keys_1>
-      <key>id_producto</key>
-    </keys_1>
-    <keys_2>
-      <key>id_producto</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -980,7 +1084,7 @@ FROM "public"."Producto"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
+      <xloc>176</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1022,14 +1126,14 @@ FROM "public"."Producto"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
+      <xloc>176</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dimension Marca</name>
-    <type>TableInput</type>
+    <name>Merge join</name>
+    <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1038,110 +1142,15 @@ FROM "public"."Producto"
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Data Warehouse</connection>
-    <sql>SELECT *
-FROM "public"."Dimension_Marca"
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_dproducto</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>id_dproducto</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_producto</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>id_producto</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>nombre</name>
-        <length>2147483647</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>nombre</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>precio</name>
-        <length>7</length>
-        <precision>2</precision>
-        <origin>Table input</origin>
-        <comments>precio</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
+    <join_type>INNER</join_type>
+    <step1>Sort rows</step1>
+    <step2>Sort rows 2</step2>
+    <keys_1>
+      <key>id_producto</key>
+    </keys_1>
+    <keys_2>
+      <key>id_producto</key>
+    </keys_2>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1151,44 +1160,8 @@ FROM "public"."Dimension_Marca"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Marca</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Walmart</connection>
-    <sql>SELECT *
-FROM "public"."Marca"
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>48</xloc>
-      <yloc>320</yloc>
+      <xloc>272</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1229,8 +1202,8 @@ FROM "public"."Marca"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>224</yloc>
+      <xloc>384</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1271,8 +1244,8 @@ FROM "public"."Marca"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>320</yloc>
+      <xloc>384</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1305,131 +1278,13 @@ FROM "public"."Marca"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>288</yloc>
+      <xloc>480</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 5</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_marca</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 6</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_marca</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join 3</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows 5</step1>
-    <step2>Sort rows 6</step2>
-    <keys_1>
-      <key>id_marca</key>
-    </keys_1>
-    <keys_2>
-      <key>id_marca</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Carrito Estanteria</name>
+    <name>Dimension Marca</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1439,9 +1294,9 @@ FROM "public"."Marca"
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Walmart</connection>
+    <connection>Data Warehouse</connection>
     <sql>SELECT *
-FROM "public"."Carrito_Estanteria"
+FROM "public"."Dimension_Marca"
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -1453,11 +1308,117 @@ FROM "public"."Carrito_Estanteria"
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>id_carrito</name>
+        <name>id_dmarca</name>
         <length>9</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>id_carrito</comments>
+        <comments>id_dmarca</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>id_marca</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>id_marca</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nombre</name>
+        <length>2147483647</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>nombre</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Rotacion</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Walmart</connection>
+    <sql>SELECT *
+FROM "public"."Rotacion"
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>id_almacen</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>id_almacen</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -1542,165 +1503,13 @@ FROM "public"."Carrito_Estanteria"
         <date_format_timezone>America/Caracas</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Factura</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Walmart</connection>
-    <sql>SELECT *
-FROM "public"."Factura"
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_factura</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>factura</origin>
-        <comments>id_factura</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_cliente</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>factura</origin>
-        <comments>id_cliente</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_tienda</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>factura</origin>
-        <comments>id_tienda</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_carrito</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>factura</origin>
-        <comments>id_carrito</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>monto</name>
-        <length>8</length>
-        <precision>2</precision>
-        <origin>factura</origin>
-        <comments>monto</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
       <value-meta>
         <type>Timestamp</type>
         <storagetype>normal</storagetype>
         <name>fecha</name>
         <length>6</length>
         <precision>-1</precision>
-        <origin>factura</origin>
+        <origin>Table input</origin>
         <comments>fecha</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1717,15 +1526,191 @@ FROM "public"."Factura"
         <date_format_timezone>America/Caracas</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 6</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join 3</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Sort rows 5</step1>
+    <step2>Sort rows 6</step2>
+    <keys_1>
+    </keys_1>
+    <keys_2>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 5</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dimension Almacen</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Data Warehouse</connection>
+    <sql>SELECT *
+FROM "public"."Dimension_Almacen"
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
       <value-meta>
-        <type>Boolean</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>active</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>factura</origin>
-        <comments>active</comments>
-        <conversion_Mask/>
+        <name>id_dalmacen</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Dimension Tienda</origin>
+        <comments>id_dalmacen</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>America/Caracas</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>id_almacen</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Dimension Tienda</origin>
+        <comments>id_almacen</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
         <currency_symbol/>
@@ -1750,7 +1735,125 @@ FROM "public"."Factura"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
+      <xloc>688</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 7</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_almacen</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 8</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_almacen</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join 5</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Sort rows 9</step1>
+    <step2>Sort rows 10</step2>
+    <keys_1>
+      <key>id_tienda</key>
+    </keys_1>
+    <keys_2>
+      <key>id_tienda</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1783,7 +1886,7 @@ FROM "public"."Dimension_Tienda"
         <name>id_dtienda</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Tienda</origin>
+        <origin>Table input</origin>
         <comments>id_dtienda</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1806,7 +1909,7 @@ FROM "public"."Dimension_Tienda"
         <name>id_tienda</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Tienda</origin>
+        <origin>Table input</origin>
         <comments>id_tienda</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1829,7 +1932,7 @@ FROM "public"."Dimension_Tienda"
         <name>nombre</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>Tienda</origin>
+        <origin>Table input</origin>
         <comments>nombre</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1856,165 +1959,13 @@ FROM "public"."Dimension_Tienda"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>512</yloc>
+      <xloc>688</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 7</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_producto</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 8</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_producto</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join 4</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows 7</step1>
-    <step2>Sort rows 8</step2>
-    <keys_1>
-      <key>id_producto</key>
-    </keys_1>
-    <keys_2>
-      <key>id_producto</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join 5</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows 9</step1>
-    <step2>Sort rows 10</step2>
-    <keys_1>
-      <key>id_carrito</key>
-    </keys_1>
-    <keys_2>
-      <key>id_carrito</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>848</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Carrito</name>
+    <name>Almacen</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -2026,7 +1977,7 @@ FROM "public"."Dimension_Tienda"
     </partitioning>
     <connection>Walmart</connection>
     <sql>SELECT *
-FROM "public"."Carrito"
+FROM "public"."Almacen"
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -2044,8 +1995,8 @@ FROM "public"."Carrito"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>320</yloc>
+      <xloc>688</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2069,7 +2020,7 @@ FROM "public"."Carrito"
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id_carrito</name>
+        <name>id_tienda</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -2086,8 +2037,8 @@ FROM "public"."Carrito"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>224</yloc>
+      <xloc>784</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2111,7 +2062,7 @@ FROM "public"."Carrito"
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id_carrito</name>
+        <name>id_tienda</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -2128,7 +2079,83 @@ FROM "public"."Carrito"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>784</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 12</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_almacen</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join 6</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Sort rows 11</step1>
+    <step2>Sort rows 12</step2>
+    <keys_1>
+      <key>id_almacen</key>
+    </keys_1>
+    <keys_2>
+      <key>id_almacen</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1120</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2153,7 +2180,7 @@ FROM "public"."Carrito"
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id_tienda</name>
+        <name>id_almacen</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -2170,55 +2197,13 @@ FROM "public"."Carrito"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>416</yloc>
+      <xloc>976</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 12</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_tienda</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join 6</name>
+    <name>Merge join 4</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -2229,13 +2214,13 @@ FROM "public"."Carrito"
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Sort rows 11</step1>
-    <step2>Sort rows 12</step2>
+    <step1>Sort rows 8</step1>
+    <step2>Sort rows 7</step2>
     <keys_1>
-      <key>id_tienda</key>
+      <key>id_almacen</key>
     </keys_1>
     <keys_2>
-      <key>id_tienda</key>
+      <key>id_almacen</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -2246,126 +2231,8 @@ FROM "public"."Carrito"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join 7</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows 13</step1>
-    <step2>Sort rows 14</step2>
-    <keys_1>
-      <key>id_carrito</key>
-    </keys_1>
-    <keys_2>
-      <key>id_carrito</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1072</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 13</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_carrito</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 14</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>id_carrito</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>464</yloc>
+      <xloc>880</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2465,8 +2332,8 @@ FROM "public"."Carrito"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1168</xloc>
-      <yloc>368</yloc>
+      <xloc>1216</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2483,7 +2350,7 @@ FROM "public"."Carrito"
     </partitioning>
     <connection>Data Warehouse</connection>
     <sql>SELECT *
-FROM "public"."Dimension_Tiempo_Ventas"
+FROM "public"."Dimension_Tiempo_Inventario"
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -2498,7 +2365,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <name>id_dtiempo</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Dimension Tiempo</origin>
         <comments>id_dtiempo</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -2521,7 +2388,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <name>anio</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Dimension Tiempo</origin>
         <comments>anio</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -2544,7 +2411,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <name>mes</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Dimension Tiempo</origin>
         <comments>mes</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -2567,7 +2434,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <name>semana</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Dimension Tiempo</origin>
         <comments>semana</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -2590,7 +2457,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <name>dia</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Dimension Tiempo</origin>
         <comments>dia</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -2613,7 +2480,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <name>hora</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Dimension Tiempo</origin>
         <comments>hora</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -2640,13 +2507,13 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1168</xloc>
-      <yloc>464</yloc>
+      <xloc>1216</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 15</name>
+    <name>Sort rows 14</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2714,13 +2581,13 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>368</yloc>
+      <xloc>1312</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 16</name>
+    <name>Sort rows 13</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2788,13 +2655,13 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>464</yloc>
+      <xloc>1312</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Merge join 8</name>
+    <name>Merge join 7</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>N</distribute>
@@ -2805,8 +2672,8 @@ FROM "public"."Dimension_Tiempo_Ventas"
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Sort rows 15</step1>
-    <step2>Sort rows 16</step2>
+    <step1>Sort rows 13</step1>
+    <step2>Sort rows 14</step2>
     <keys_1>
       <key>anio</key>
       <key>mes</key>
@@ -2830,7 +2697,105 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
+      <xloc>1408</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 15</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_dtienda</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>id_almacen</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>id_dproducto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>anio</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>mes</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>semana</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>dia</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>hora</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1568</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2839,7 +2804,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
     <name>Group by</name>
     <type>GroupBy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -2856,10 +2821,13 @@ FROM "public"."Dimension_Tiempo_Ventas"
     <give_back_row>N</give_back_row>
     <group>
       <field>
-        <name>id_tienda</name>
+        <name>id_dtienda</name>
       </field>
       <field>
-        <name>id_producto</name>
+        <name>id_dalmacen</name>
+      </field>
+      <field>
+        <name>id_dproducto</name>
       </field>
       <field>
         <name>anio</name>
@@ -2894,86 +2862,13 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
-      <yloc>368</yloc>
+      <xloc>1520</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Microsoft Excel output</name>
-    <type>ExcelOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <encoding/>
-    <append>N</append>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>${Internal.Transformation.Filename.Directory}\Corporative Memory Reports\Sales Facts.xls</name>
-      <extention>xls</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <create_parent_folder>N</create_parent_folder>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>Sheet1</sheetname>
-      <autosizecolums>N</autosizecolums>
-      <nullisblank>N</nullisblank>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <splitevery>0</splitevery>
-      <usetempfiles>N</usetempfiles>
-      <tempdirectory/>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <append>N</append>
-      <filename>template.xls</filename>
-    </template>
-    <fields>
-    </fields>
-    <custom>
-      <header_font_name>arial</header_font_name>
-      <header_font_size>10</header_font_size>
-      <header_font_bold>N</header_font_bold>
-      <header_font_italic>N</header_font_italic>
-      <header_font_underline>no</header_font_underline>
-      <header_font_orientation>horizontal</header_font_orientation>
-      <header_font_color>black</header_font_color>
-      <header_background_color>none</header_background_color>
-      <header_row_height>255</header_row_height>
-      <header_alignment>left</header_alignment>
-      <header_image/>
-      <row_font_name>arial</row_font_name>
-      <row_font_size>10</row_font_size>
-      <row_font_color>black</row_font_color>
-      <row_background_color>none</row_background_color>
-    </custom>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1696</xloc>
-      <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 17</name>
+    <name>Sort rows 16</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2992,7 +2887,7 @@ FROM "public"."Dimension_Tiempo_Ventas"
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>id_tienda</name>
+        <name>id_dtienda</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3000,7 +2895,15 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <presorted>N</presorted>
       </field>
       <field>
-        <name>id_producto</name>
+        <name>id_dalmacen</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>id_dproducto</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -3057,13 +2960,13 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
-      <yloc>464</yloc>
+      <xloc>1616</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Merge join 9</name>
+    <name>Merge join 8</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>N</distribute>
@@ -3074,11 +2977,12 @@ FROM "public"."Dimension_Tiempo_Ventas"
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Group by</step1>
-    <step2>Sort rows 17</step2>
+    <step1>Sort rows 16</step1>
+    <step2>Sort rows 15</step2>
     <keys_1>
-      <key>id_tienda</key>
-      <key>id_producto</key>
+      <key>id_dtienda</key>
+      <key>id_dalmacen</key>
+      <key>id_dproducto</key>
       <key>anio</key>
       <key>mes</key>
       <key>semana</key>
@@ -3086,8 +2990,9 @@ FROM "public"."Dimension_Tiempo_Ventas"
       <key>hora</key>
     </keys_1>
     <keys_2>
-      <key>id_tienda</key>
-      <key>id_producto</key>
+      <key>id_dtienda</key>
+      <key>id_dalmacen</key>
+      <key>id_dproducto</key>
       <key>anio</key>
       <key>mes</key>
       <key>semana</key>
@@ -3103,14 +3008,14 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1584</xloc>
-      <yloc>416</yloc>
+      <xloc>1728</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>Table output</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -3119,28 +3024,200 @@ FROM "public"."Dimension_Tiempo_Ventas"
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <connection>Too Many Connections</connection>
+    <schema>public</schema>
+    <table>"Too_Many_Conections"</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
-        <name>id_dtienda</name>
-        <rename/>
+        <column_name>id_dtienda</column_name>
+        <stream_name>id_dtienda</stream_name>
       </field>
       <field>
-        <name>id_dproducto</name>
-        <rename/>
+        <column_name>id_dalmacen</column_name>
+        <stream_name>id_dalmacen</stream_name>
       </field>
       <field>
-        <name>id_dmarca</name>
-        <rename/>
+        <column_name>id_dproducto</column_name>
+        <stream_name>id_dproducto</stream_name>
       </field>
       <field>
-        <name>id_dtiempo</name>
-        <rename/>
+        <column_name>anio</column_name>
+        <stream_name>anio</stream_name>
       </field>
       <field>
-        <name>unidades</name>
-        <rename/>
+        <column_name>mes</column_name>
+        <stream_name>mes</stream_name>
       </field>
-      <select_unspecified>N</select_unspecified>
+      <field>
+        <column_name>semana</column_name>
+        <stream_name>semana</stream_name>
+      </field>
+      <field>
+        <column_name>dia</column_name>
+        <stream_name>dia</stream_name>
+      </field>
+      <field>
+        <column_name>hora</column_name>
+        <stream_name>hora</stream_name>
+      </field>
+      <field>
+        <column_name>unidades</column_name>
+        <stream_name>unidades</stream_name>
+      </field>
+      <field>
+        <column_name>id_dproducto_1</column_name>
+        <stream_name>id_dproducto_1</stream_name>
+      </field>
+      <field>
+        <column_name>id_producto</column_name>
+        <stream_name>id_producto</stream_name>
+      </field>
+      <field>
+        <column_name>nombre</column_name>
+        <stream_name>nombre</stream_name>
+      </field>
+      <field>
+        <column_name>precio</column_name>
+        <stream_name>precio</stream_name>
+      </field>
+      <field>
+        <column_name>id_producto_1</column_name>
+        <stream_name>id_producto_1</stream_name>
+      </field>
+      <field>
+        <column_name>id_marca</column_name>
+        <stream_name>id_marca</stream_name>
+      </field>
+      <field>
+        <column_name>nombre_1</column_name>
+        <stream_name>nombre_1</stream_name>
+      </field>
+      <field>
+        <column_name>precio_1</column_name>
+        <stream_name>precio_1</stream_name>
+      </field>
+      <field>
+        <column_name>active</column_name>
+        <stream_name>active</stream_name>
+      </field>
+      <field>
+        <column_name>id_dmarca</column_name>
+        <stream_name>id_dmarca</stream_name>
+      </field>
+      <field>
+        <column_name>id_marca_1</column_name>
+        <stream_name>id_marca_1</stream_name>
+      </field>
+      <field>
+        <column_name>nombre_2</column_name>
+        <stream_name>nombre_2</stream_name>
+      </field>
+      <field>
+        <column_name>id_almacen</column_name>
+        <stream_name>id_almacen</stream_name>
+      </field>
+      <field>
+        <column_name>id_estanteria</column_name>
+        <stream_name>id_estanteria</stream_name>
+      </field>
+      <field>
+        <column_name>id_producto_2</column_name>
+        <stream_name>id_producto_2</stream_name>
+      </field>
+      <field>
+        <column_name>cantidad</column_name>
+        <stream_name>cantidad</stream_name>
+      </field>
+      <field>
+        <column_name>fecha</column_name>
+        <stream_name>fecha</stream_name>
+      </field>
+      <field>
+        <column_name>id_dalmacen_1</column_name>
+        <stream_name>id_dalmacen_1</stream_name>
+      </field>
+      <field>
+        <column_name>id_almacen_1</column_name>
+        <stream_name>id_almacen_1</stream_name>
+      </field>
+      <field>
+        <column_name>id_dtienda_1</column_name>
+        <stream_name>id_dtienda_1</stream_name>
+      </field>
+      <field>
+        <column_name>id_tienda</column_name>
+        <stream_name>id_tienda</stream_name>
+      </field>
+      <field>
+        <column_name>nombre_3</column_name>
+        <stream_name>nombre_3</stream_name>
+      </field>
+      <field>
+        <column_name>id_almacen_2</column_name>
+        <stream_name>id_almacen_2</stream_name>
+      </field>
+      <field>
+        <column_name>id_tienda_1</column_name>
+        <stream_name>id_tienda_1</stream_name>
+      </field>
+      <field>
+        <column_name>anio_1</column_name>
+        <stream_name>anio_1</stream_name>
+      </field>
+      <field>
+        <column_name>mes_1</column_name>
+        <stream_name>mes_1</stream_name>
+      </field>
+      <field>
+        <column_name>semana_1</column_name>
+        <stream_name>semana_1</stream_name>
+      </field>
+      <field>
+        <column_name>dia_1</column_name>
+        <stream_name>dia_1</stream_name>
+      </field>
+      <field>
+        <column_name>hora_1</column_name>
+        <stream_name>hora_1</stream_name>
+      </field>
+      <field>
+        <column_name>id_dtiempo</column_name>
+        <stream_name>id_dtiempo</stream_name>
+      </field>
+      <field>
+        <column_name>anio_1_1</column_name>
+        <stream_name>anio_1_1</stream_name>
+      </field>
+      <field>
+        <column_name>mes_1_1</column_name>
+        <stream_name>mes_1_1</stream_name>
+      </field>
+      <field>
+        <column_name>semana_1_1</column_name>
+        <stream_name>semana_1_1</stream_name>
+      </field>
+      <field>
+        <column_name>dia_1_1</column_name>
+        <stream_name>dia_1_1</stream_name>
+      </field>
+      <field>
+        <column_name>hora_1_1</column_name>
+        <stream_name>hora_1_1</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3151,141 +3228,8 @@ FROM "public"."Dimension_Tiempo_Ventas"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1696</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Add sequence</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>id_hventas</valuename>
-    <use_database>N</use_database>
-    <connection/>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>1</start_at>
-    <increment_by>1</increment_by>
-    <max_value>999999999</max_value>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1792</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Data Warehouse</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>public</schema>
-      <table>"Hechos_Ventas"</table>
-      <key>
-        <name>id_hventas</name>
-        <field>id_hventas</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>id_dtienda</name>
-        <field>id_dtienda</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>id_dproducto</name>
-        <field>id_dproducto</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>id_dmarca</name>
-        <field>id_dmarca</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>id_dtiempo</name>
-        <field>id_dtiempo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>unidades</name>
-        <field>unidades</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_hventas</name>
-        <rename>id_hventas</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>id_dtienda</name>
-        <rename>id_dtienda</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>id_dproducto</name>
-        <rename>id_dproducto</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>id_dmarca</name>
-        <rename>id_dmarca</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>id_dtiempo</name>
-        <rename>id_dtiempo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>unidades</name>
-        <rename>unidades</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1888</xloc>
-      <yloc>416</yloc>
+      <xloc>1840</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3298,31 +3242,11 @@ FROM "public"."Dimension_Tiempo_Ventas"
     <group>
       <name>explorerState</name>
       <attribute>
-        <key>Dimension Tienda</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>Carrito</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>Producto</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>Dimension Tiempo</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>Dimension Marca</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>Sort rows 4</key>
-        <value/>
-      </attribute>
-      <attribute>
         <key>Dimension Producto</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Sort rows 8</key>
         <value/>
       </attribute>
       <attribute>
@@ -3330,19 +3254,39 @@ FROM "public"."Dimension_Tiempo_Ventas"
         <value/>
       </attribute>
       <attribute>
-        <key>Sort rows 5</key>
+        <key>Almacen</key>
         <value/>
       </attribute>
       <attribute>
-        <key>Marca</key>
+        <key>Rotacion</key>
         <value/>
       </attribute>
       <attribute>
-        <key>Factura</key>
+        <key>Dimension Tienda</key>
         <value/>
       </attribute>
       <attribute>
-        <key>Carrito Estanteria</key>
+        <key>Producto</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Sort rows 13</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Sort rows 14</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Dimension Almacen</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Merge join 7</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Dimension Marca</key>
         <value/>
       </attribute>
     </group>

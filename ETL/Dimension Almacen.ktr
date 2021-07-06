@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Dimensión_Categoria</name>
+    <name>Dimension Almacen</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,16 +427,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/06/29 23:37:59.568</created_date>
+    <created_date>2021/07/04 22:39:31.254</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/06/29 23:37:59.568</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2021/07/04 22:39:31.254</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>Dataguerjaus</name>
+    <name>Data Warehouse</name>
     <server>batyr.db.elephantsql.com</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -488,7 +487,7 @@
     </attributes>
   </connection>
   <connection>
-    <name>Walmart_categoria</name>
+    <name>Walmart</name>
     <server>batyr.db.elephantsql.com</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -541,6 +540,11 @@
   <order>
     <hop>
       <from>Table input</from>
+      <to>Microsoft Excel output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
@@ -554,146 +558,7 @@
       <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>Table input</from>
-      <to>Microsoft Excel output</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
-  <step>
-    <name>Add sequence</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>id_dcategoria</valuename>
-    <use_database>N</use_database>
-    <connection>Walmart_categoria</connection>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>1</start_at>
-    <increment_by>1</increment_by>
-    <max_value>999999999</max_value>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Dataguerjaus</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>public</schema>
-      <table>"Dimension_Categoria"</table>
-      <key>
-        <name>id_dcategoria</name>
-        <field>id_dcategoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>id_categoria</name>
-        <field>id_categoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>nombre</name>
-        <field>nombre</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id_dcategoria</name>
-        <rename>id_dcategoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>id_categoria</name>
-        <rename>id_categoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nombre</name>
-        <rename>nombre</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>id_categoria</name>
-      </field>
-      <field>
-        <name>nombre</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Table input</name>
     <type>TableInput</type>
@@ -705,9 +570,9 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Walmart_categoria</connection>
+    <connection>Walmart</connection>
     <sql>SELECT *
-FROM "public"."Categoria"
+FROM "public"."Almacen"
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -719,11 +584,11 @@ FROM "public"."Categoria"
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>id_categoria</name>
+        <name>id_almacen</name>
         <length>9</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>id_categoria</comments>
+        <comments>id_almacen</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -735,19 +600,19 @@ FROM "public"."Categoria"
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_MX</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Caracas</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>nombre</name>
-        <length>2147483647</length>
-        <precision>-1</precision>
+        <name>id_tienda</name>
+        <length>9</length>
+        <precision>0</precision>
         <origin>Table input</origin>
-        <comments>nombre</comments>
-        <conversion_Mask/>
+        <comments>id_tienda</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
         <currency_symbol/>
@@ -758,30 +623,7 @@ FROM "public"."Categoria"
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_MX</date_format_locale>
-        <date_format_timezone>America/Caracas</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Boolean</type>
-        <storagetype>normal</storagetype>
-        <name>active</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>active</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_MX</date_format_locale>
+        <date_format_locale>en_US</date_format_locale>
         <date_format_timezone>America/Caracas</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -795,8 +637,8 @@ FROM "public"."Categoria"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>160</yloc>
+      <xloc>336</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -817,7 +659,7 @@ FROM "public"."Categoria"
     <append>N</append>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Transformation.Filename.Directory}\Corporative Memory Reports\Category Corporative Memory.xls</name>
+      <name>${Internal.Transformation.Filename.Directory}\Corporative Memory Reports\Warehouse Corporative Memory.xls</name>
       <extention>xls</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <create_parent_folder>N</create_parent_folder>
@@ -868,8 +710,129 @@ FROM "public"."Categoria"
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>448</xloc>
       <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_almacen</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add sequence</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>id_dalmacen</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Data Warehouse</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>"Dimension_Almacen"</table>
+      <key>
+        <name>id_dalmacen</name>
+        <field>id_dalmacen</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>id_almacen</name>
+        <field>id_almacen</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_dalmacen</name>
+        <rename>id_dalmacen</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>id_almacen</name>
+        <rename>id_almacen</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
