@@ -1,3 +1,8 @@
-"id_dtienda","id_destanteria","nombre","unidades","anio","mes","semana","dia"
-1,8,"Pepper - Orange",2440,2021,6,25,1
-2,16,"Pepper - Orange",354,2021,6,25,1
+"id_dtienda","id_destanteria","nombre","unidades","dia"
+1,8,"Pepper - Orange",2440,1
+2,10,"Pepper - Orange",250,2
+1,3,"Pepper - Orange",1306,3
+1,14,"Pepper - Orange",836,4
+1,8,"Pepper - Orange",1064,5
+1,11,"Pepper - Orange",578,6
+1,4,"Pepper - Orange",1704,7
